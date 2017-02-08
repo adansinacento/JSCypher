@@ -1,4 +1,13 @@
-function JSCypher(str){
+/*
+ * JSCypher
+ * https://github.com/adansinacento/JSCypher
+ *
+ * Copyright 2017, Adan Sandoval
+ * https://twitter.com/adansinacento
+ *
+ */
+
+function JSCypher(str){ // Declaration of the main class
 	this.string = str;
 	this.getString = function(){
 		return this.string;
@@ -66,7 +75,7 @@ function JSCypher(str){
 	}
 }
 
-function isAlpha(txt){
+function isAlpha(txt){ //Function to detect if char is part of the alphabet
 	var letterNumber = /^[a-zA-Z]+$/;
 	if((txt.match(letterNumber))) 
 	{
@@ -76,6 +85,6 @@ function isAlpha(txt){
     }
 }
 
-function dec2bin(dec){
+function dec2bin(dec){ //Funtion to convert decimal to binary
     return (dec >>> 0).toString(2);
 }
