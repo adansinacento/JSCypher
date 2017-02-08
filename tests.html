@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta lang="eng">
+	<title>JSCypher</title>
+</head>
+<body>
+<h1>Welcome to JSCypher</h1>
+<p>A js library for crypting or decrypting strings</p>
+<input type="text" name="in" id="in" placeholder="String"> <input type="text" name="ex" id="ex" placeholder="Extra data"><br><br>
+<button onclick="flip()">Reverse Me!</button> <button onclick="caesar()">Caesar Me!</button> <button onclick="atbash()">Atbash Me!</button> <button onclick="bin()"> Binary Me!</button>
+<p id="cypt">Crypted script will appear here</p>
+</body>
+<script src="JSCypher.js">
+</script>
+<script type="text/javascript">
+	function flip(){
+		var str = document.getElementById('in').value;
+		var crypt = new JSCypher(str);
+		document.getElementById('cypt').innerHTML = 'The reversed string is: ' + crypt.reversed();
+	}
+	function caesar(){
+		var str = document.getElementById('in').value;
+		var xtr = document.getElementById('ex').value;
+		if (xtr == '' || str == '' || isNaN(xtr)) {
+			alert('You must fill the two inputs, also the second must be a number');
+		} else {
+			var crypt = new JSCypher(str);
+			document.getElementById('cypt').innerHTML = 'The ' + xtr + ' spaces caesared string is: ' + crypt.caesar(xtr);
+		}
+	}
+	function atbash(){
+		var str = document.getElementById('in').value;
+		var crypt = new JSCypher(str);
+		document.getElementById('cypt').innerHTML = 'The atbashed string is: ' + crypt.atbash();
+	}
+
+	function bin(){
+		var str = document.getElementById('in').value;
+		var crypt = new JSCypher(str);
+		document.getElementById('cypt').innerHTML = 'The string turned to binary is: ' + crypt.binary() + "<br> This returns an array of binary digits";
+	}
+
+</script>
+</html>
