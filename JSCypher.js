@@ -60,6 +60,7 @@ function JSCypher(str){ // Declaration of the main class
 		return arr.join('');
 	}
 	this.binary = function(){
+
 		var temp = this.string;
 		var arr = temp.split('');
 		var ascii = 0;
@@ -72,6 +73,9 @@ function JSCypher(str){ // Declaration of the main class
 			}
 		}
 		return arr;
+	}
+	this.binary.decrypt = function(){
+		return "Hola Memo";
 	}
 }
 

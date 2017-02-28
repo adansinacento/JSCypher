@@ -18,12 +18,21 @@
 	</form>
 	<button class="btn btn-primary" onclick="flip()">Reverse Me!</button> 
 	<button class="btn btn-primary" onclick="caesar()">Caesar Me!</button> 
-	<button class="btn btn-primary" onclick="atbash()">Atbash Me!</button> 
-	<button class="btn btn-primary" onclick="bin()"> Binary Me!</button>
+	<button class="btn btn-primary" onclick="atbash()">Atbash Me!</button>
+	<div class="btn-group">
+  		<button type="button" class="btn btn-primary" onclick="bin()">Binary Me!</button>
+  		<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+    		<span class="caret"></span>
+  		</button>
+  	<ul class="dropdown-menu" role="menu">
+    	<li><a href="#" onclick="bin()">Encrypt</a></li>
+    	<li><a href="#" onclick="decryptBin()">Decrypt</a></li>
+  	</ul>
+	</div>
 	<div id="response" style="margin-bottom: 15px; margin-top: 15px;">
 		
 	</div>
-	<p id="exp">Crypted string will appear here</p>
+	<p id="exp">Crypted <code>string</code> will appear here</p>
 </div>
 </body>
 <script src="JSCypher.js">
@@ -32,8 +41,7 @@
 	function flip(){
 		var str = document.getElementById('in').value;
 		var crypt = new JSCypher(str);
-		document.getElementById('response').innerHTML = '<div class="alert alert-success alert-dismissable fade in"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>The reversed string is: ' + crypt.reversed() + '</div>';
-		document.getElementById('exp').innerHTML = 'The <code>JSCypher.reversed()</code> method will reverse all the characters in the string';
+		dataOnScreen('The reversed <code>string</code> is: ' + crypt.reversed(), 'The <code>JSCypher.reversed()</code> method will reverse all the characters in the <code>string</code> ');
 	}
 	function caesar(){
 		var str = document.getElementById('in').value;
@@ -42,23 +50,30 @@
 			alert('You must fill the two inputs, also the second must be a number');
 		} else {
 			var crypt = new JSCypher(str);
-			document.getElementById('response').innerHTML = '<div class="alert alert-success alert-dismissable fade in"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>The string moved ' + xtr + ' spaces is: ' + crypt.caesar(xtr) + '</div>';
-			document.getElementById('exp').innerHTML = 'The <code>JSCypher.caesar(X)</code> method will encrypt the string using X number of spaces (only on the letters)';
+			dataOnScreen('The <code>string</code> moved ' + xtr + ' spaces is: ' + crypt.caesar(xtr), 'The <code>JSCypher.caesar(X)</code> method will encrypt the <code>string</code> using X number of spaces (only on the letters)');
 		}
 	}
 	function atbash(){
 		var str = document.getElementById('in').value;
 		var crypt = new JSCypher(str);
-		document.getElementById('response').innerHTML = '<div class="alert alert-success alert-dismissable fade in"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>The atbashed string is: ' + crypt.atbash() + '</div>';
-		document.getElementById('exp').innerHTML = 'The <code>JSCypher.atbash()</code> method will encrypt any string using atbash (only on the letters)';
+		dataOnScreen('The atbashed <code>string</code> is: ' + crypt.atbash(), 'The <code>JSCypher.atbash()</code> method will encrypt any <code>string</code> using atbash (only on the letters)');
 	}
 
 	function bin(){
 		var str = document.getElementById('in').value;
 		var crypt = new JSCypher(str);
-		//document.getElementById('cypt').innerHTML = 'The string turned to binary is: ' + crypt.binary() + "<br> This returns an array of binary digits";
-		document.getElementById('response').innerHTML = '<div class="alert alert-success alert-dismissable fade in"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>The string turned to binary is: ' + crypt.binary() + '</div>';
-		document.getElementById('exp').innerHTML = 'The <code>JSCypher.binary()</code> method returns an <code>array</code> of binary digits';
+		dataOnScreen('The <code>string</code> turned to binary is: ' + crypt.binary(), 'The <code>JSCypher.binary()</code> method returns an <code>array</code> of binary digits');
+	}
+
+	function decryptBin(){
+		var str = document.getElementById('in').value;
+		var crypt = new JSCypher(str);
+		dataOnScreen('The <code>string</code> decrypted from binary is: ', 'The <code>JSCypher.binary.decrypt()</code> method must recibe an <code>string</code> of binary digits (separated by commas) and will return a <code>string</code> ');
+	}
+
+	function dataOnScreen(string, exp){
+		document.getElementById('response').innerHTML = '<div class="alert alert-success alert-dismissable fade in"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' + string + '</div>';
+		document.getElementById('exp').innerHTML = exp;
 	}
 
 </script>
